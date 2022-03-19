@@ -39,3 +39,57 @@ export type Article = {
   uri: string
   url: string
 }
+
+export type SingeArticleResponse = {
+  copyright: string
+  response: {
+    docs: {
+      abstract: string
+      byline: {
+        organization: unknown | null
+        original: string
+        person: {
+          firstname: string
+          lastname: string
+          middlename: unknown | null
+          organization: string
+          qualifier: unknown | null
+          rank: number
+          role: string
+          title: unknown | null
+        }[]
+      }
+      document_type: string
+      headline: {
+        content_kicker: unknown | null
+        kicker: unknown | null
+        main: string
+        name: unknown | null
+        print_headline: unknown | null
+        seo: unknown | null
+        sub: unknown | null
+      }
+      keywords: {
+        major: string
+        name: string
+        rank: number
+        value: string
+      }[]
+      lead_paragraph: string
+      multimedia: any[]
+      news_desk: string
+      pub_date: string
+      section_name: string
+      snippet: string
+      source: string
+      subsection_name: string
+      type_of_material: string
+      uri: string
+      web_url: string
+      word_count: number
+      _id: string
+    }[]
+    meta: { hits: number; offset: number; time: number }
+  }
+  status: string
+}
