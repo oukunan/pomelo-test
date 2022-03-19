@@ -1,0 +1,13 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-column-gap: calc(1rem * 2 + 1px);
+}
+
+.title_and_description_container {
+    grid-column: span 5;
+}
+
+.image_container {
+    grid-column: span 9;
+}
