@@ -2,10 +2,12 @@ import { fetchSingleArticle } from '../actions'
 
 export default function ArticleDetails(props: {
   docs: Awaited<ReturnType<typeof fetchSingleArticle>>
+  isError: boolean
 }) {
-  if (props.docs.length === 0) {
-    return 'Cannot find your article'
+  if (props.isError) {
+    return 'Cannot retrieve your article Please try again later.'
   }
+
   return (
     <div>
       <h1>{props.docs[0].headline.main}</h1>
@@ -15,7 +17,11 @@ export default function ArticleDetails(props: {
 }
 
 export async function getServerSideProps(data: { query: { uri: string } }) {
-  const docs = await fetchSingleArticle(data.query.uri)
+  try {
+    const docs = await fetchSingleArticle(data.query.uri)
 
-  return { props: { docs } }
+    return { props: { docs } }
+  } catch (error) {
+    return { props: { docs: [], isError: error } }
+  }
 }

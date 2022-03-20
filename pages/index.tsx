@@ -2,9 +2,9 @@ import { fetchPopularArticles } from '../actions'
 import ArticleCard from '../components/ArticleCard'
 import { Article } from '../types'
 
-export default function Home(props: { articles: Article[] }) {
-  if (props.articles.length === 0) {
-    return <p>No articles</p>
+export default function Home(props: { articles: Article[]; isError: boolean }) {
+  if (props.isError) {
+    return 'Something went wrong. Please try again.'
   }
 
   return (
@@ -17,6 +17,11 @@ export default function Home(props: { articles: Article[] }) {
 }
 
 export async function getServerSideProps() {
-  const articles = await fetchPopularArticles()
-  return { props: { articles } }
+  try {
+    const articles = await fetchPopularArticles()
+
+    return { props: { articles } }
+  } catch (error) {
+    return { props: { articles: [], isError: true } }
+  }
 }
