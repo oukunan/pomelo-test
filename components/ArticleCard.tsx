@@ -4,7 +4,10 @@ import styles from './ArticleCard.module.css'
 import { Article } from '../types'
 
 export default function ArticleCard(props: {
-  article: Pick<Article, 'id' | 'title' | 'abstract' | 'media' | 'uri'>
+  article: Pick<
+    Article,
+    'id' | 'title' | 'abstract' | 'media' | 'uri' | 'published_date' | 'section'
+  >
 }) {
   const media = props.article.media[0]
 
@@ -19,13 +22,17 @@ export default function ArticleCard(props: {
       passHref
     >
       <article className={styles.container}>
-        <div className={styles.title_and_description_container}>
-          <h2>{props.article.title}</h2>
-          <p>{props.article.abstract}</p>
-        </div>
-        {media && (
-          <div className={styles.image_container}>
-            <figure>
+        <span className={styles.article_published_date}>
+          {new Date(props.article.published_date).toDateString()}
+        </span>
+        <div className={styles.content_container}>
+          <div className={styles.header_and_description_container}>
+            <p className={styles.article_section}>{props.article.section}</p>
+            <h2 className={styles.article_header}>{props.article.title}</h2>
+            <p className={styles.article_abstract}>{props.article.abstract}</p>
+          </div>
+          {media && (
+            <figure className={styles.article_figure}>
               <Image
                 src={media['media-metadata'][2].url}
                 width={media['media-metadata'][2].width}
@@ -33,10 +40,9 @@ export default function ArticleCard(props: {
                 alt="article_image"
                 priority
               />
-              {media.caption && <figcaption>{media.caption}</figcaption>}
             </figure>
-          </div>
-        )}
+          )}
+        </div>
       </article>
     </Link>
   )
