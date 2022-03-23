@@ -6,6 +6,10 @@
   --color-text-decoration-color: #326891;
 }
 
+html {
+  overflow: overlay;
+}
+
 html,
 body {
   padding: 0;
