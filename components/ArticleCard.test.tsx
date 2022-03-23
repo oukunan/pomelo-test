@@ -1,75 +1,47 @@
 import { render, screen } from '@testing-library/react'
 import ArticleCard from './ArticleCard'
+import { mockArticle } from '../mocks'
 
 const baseProps: React.ComponentProps<typeof ArticleCard> = {
-  article: {
-    id: 1,
-    title: 'article title',
-    abstract: 'article abstract',
-    media: [
-      {
-        approved_for_syndication: 1,
-        caption: 'article caption',
-        copyright: '',
-        'media-metadata': [
-          {
-            format: '',
-            height: 100,
-            url: 'https://static01.nyt.com/images/2022/03/16/us/politics/16dc-wardead-1/16dc-wardead-1-mediumThreeByTwo440.jpg',
-            width: 100,
-          },
-          {
-            format: '',
-            height: 250,
-            url: 'https://static01.nyt.com/images/2022/03/16/us/politics/16dc-wardead-1/16dc-wardead-1-mediumThreeByTwo440.jpg',
-            width: 250,
-          },
-          {
-            format: '',
-            height: 440,
-            url: 'https://static01.nyt.com/images/2022/03/16/us/politics/16dc-wardead-1/16dc-wardead-1-mediumThreeByTwo440.jpg',
-            width: 440,
-          },
-        ],
-        subtype: '',
-        type: '',
-      },
-    ],
-  },
+  article: mockArticle,
 }
 
-it('renders valid article information', () => {
-  render(<ArticleCard {...baseProps} />)
+it("renders valid article card's information", () => {
+  const { baseElement } = render(<ArticleCard {...baseProps} />)
 
-  expect(screen.queryByRole('heading')?.textContent).toBe(
-    baseProps.article.title
+  const publishedDate = baseElement.querySelector(
+    '.ax-article-card__published_date'
+  ) as HTMLTimeElement
+
+  expect(publishedDate).toHaveTextContent(
+    new Date(mockArticle.published_date).toDateString()
   )
-  expect(screen.queryByText(baseProps.article.abstract)).toBeInTheDocument()
+  expect(publishedDate.getAttribute('dateTime')).toBe('2022-03-22')
   expect(
-    screen.queryByText(baseProps.article.media[0].caption)
+    baseElement.querySelector('.ax-article-card__section')
+  ).toHaveTextContent(mockArticle.section)
+  expect(
+    baseElement.querySelector('.ax-article-card__header')
+  ).toHaveTextContent(mockArticle.title)
+  expect(baseElement.querySelector('.ax-article__abstract')).toHaveTextContent(
+    mockArticle.abstract
+  )
+  expect(
+    baseElement.querySelector('.ax-article-card__figure')
   ).toBeInTheDocument()
 })
 
 it('not renders article image caption', () => {
-  render(
+  const { baseElement } = render(
     <ArticleCard
       article={{
         ...baseProps.article,
-        media: [
-          {
-            ...baseProps.article.media[0],
-            caption: '',
-          },
-        ],
+        media: [],
       }}
     />
   )
 
-  expect(screen.queryByRole('heading')?.textContent).toBe(
-    baseProps.article.title
-  )
-  expect(screen.queryByText(baseProps.article.abstract)).toBeInTheDocument()
   expect(
-    screen.queryByText(baseProps.article.media[0].caption)
+    baseElement.querySelector('.ax-article-card__figure')
   ).not.toBeInTheDocument()
 })
