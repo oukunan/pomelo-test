@@ -4,11 +4,11 @@ import { fetchPopularArticles } from '../actions'
 import ArticleList from '../components/ArticleList'
 import Layout from '../components/Layout'
 import SearchInput from '../components/SearchInput'
-import useFilteredArticles from '../hooks/useFilteredArticles'
+import useSearchArticles from '../hooks/useSearchArticles'
 import { Article } from '../types'
 
 export default function Home(props: { articles: Article[]; isError: boolean }) {
-  const { articles, query, setQuery } = useFilteredArticles(props.articles)
+  const { articles, query, setQuery } = useSearchArticles(props.articles)
 
   return (
     <Layout title="New York Times News">
