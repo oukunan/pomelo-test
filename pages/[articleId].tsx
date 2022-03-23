@@ -1,4 +1,5 @@
 import cx from 'classnames'
+
 import { fetchSingleArticle } from '../actions'
 import Layout from '../components/Layout'
 import styles from '../styles/Article.module.css'
@@ -9,7 +10,7 @@ export default function ArticleDetails(props: {
 }) {
   if (props.isError) {
     return (
-      <Layout>
+      <Layout title="Something went wrong">
         <p className="ax-article-details__error_message">
           Cannot retrieve your article. Please try again later.
         </p>
@@ -17,18 +18,17 @@ export default function ArticleDetails(props: {
     )
   }
 
-  const {
-    abstract,
-    headline: { main },
-    byline: { original },
-    lead_paragraph,
-    section_name,
-    web_url,
-    pub_date,
-  } = props.docs[0]
+  const docs = props.docs[0]
+  if (!docs) {
+    return (
+      <Layout title="Something went wrong">
+        <p>Cannot get your article. Please try again later.</p>
+      </Layout>
+    )
+  }
 
   return (
-    <Layout>
+    <Layout title={docs.headline.main}>
       <div className={styles.article__container}>
         <div className={styles.article__top_content_container}>
           <p
@@ -37,24 +37,24 @@ export default function ArticleDetails(props: {
               'ax-article__section_name'
             )}
           >
-            {section_name}
+            {docs.section_name}
           </p>
           <h1 className={cx(styles.article__header, 'ax-article__header')}>
-            {main}
+            {docs.headline.main}
           </h1>
           <h2 className={cx(styles.article__abstract, 'ax-article__abstract')}>
-            {abstract}
+            {docs.abstract}
           </h2>
         </div>
 
         <div className={cx(styles.article__original, 'ax-article__original')}>
-          {original}
+          {docs.byline.original}
         </div>
         <time
           className={cx(styles.article__pub_date, 'ax-article__pub_date')}
-          dateTime={pub_date}
+          dateTime={docs.pub_date}
         >
-          Published: {new Date(pub_date).toDateString()}
+          Published: {new Date(docs.pub_date).toDateString()}
         </time>
         <p
           className={cx(
@@ -62,12 +62,12 @@ export default function ArticleDetails(props: {
             'ax-article__lead_paragraph'
           )}
         >
-          {lead_paragraph}
+          {docs.lead_paragraph}
         </p>
 
         <a
           className={cx(styles.article__web_url, 'ax_article__web_url')}
-          href={web_url}
+          href={docs.web_url}
           target="_blank"
           rel="noreferrer"
         >

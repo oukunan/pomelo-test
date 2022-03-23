@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React from 'react'
 
 import { fetchPopularArticles } from '../actions'
@@ -12,10 +11,7 @@ export default function Home(props: { articles: Article[]; isError: boolean }) {
   const { articles, query, setQuery } = useFilteredArticles(props.articles)
 
   return (
-    <Layout>
-      <Head>
-        <title>New York Times News</title>
-      </Head>
+    <Layout title="New York Times News">
       {props.isError ? (
         <p>
           Cannot get your articles. Please come back later or refresh the page.
