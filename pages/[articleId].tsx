@@ -1,13 +1,20 @@
+import cx from 'classnames'
 import { fetchSingleArticle } from '../actions'
 import Layout from '../components/Layout'
 import styles from '../styles/Article.module.css'
 
 export default function ArticleDetails(props: {
   docs: Awaited<ReturnType<typeof fetchSingleArticle>>
-  isError: boolean
+  isError?: boolean
 }) {
   if (props.isError) {
-    return <div>Cannot retrieve your article. Please try again later.</div>
+    return (
+      <Layout>
+        <p className="ax-article-details__error_message">
+          Cannot retrieve your article. Please try again later.
+        </p>
+      </Layout>
+    )
   }
 
   const {
@@ -24,19 +31,42 @@ export default function ArticleDetails(props: {
     <Layout>
       <div className={styles.article__container}>
         <div className={styles.article__top_content_container}>
-          <p className={styles.article__section_name}>{section_name}</p>
-          <h1 className={styles.article__header}>{main}</h1>
-          <h2 className={styles.article__abstract}>{abstract}</h2>
+          <p
+            className={cx(
+              styles.article__section_name,
+              'ax-article__section_name'
+            )}
+          >
+            {section_name}
+          </p>
+          <h1 className={cx(styles.article__header, 'ax-article__header')}>
+            {main}
+          </h1>
+          <h2 className={cx(styles.article__abstract, 'ax-article__abstract')}>
+            {abstract}
+          </h2>
         </div>
 
-        <div className={styles.article__original}>{original}</div>
-        <time className={styles.article__pub_date} dateTime={pub_date}>
+        <div className={cx(styles.article__original, 'ax-article__original')}>
+          {original}
+        </div>
+        <time
+          className={cx(styles.article__pub_date, 'ax-article__pub_date')}
+          dateTime={pub_date}
+        >
           Published: {new Date(pub_date).toDateString()}
         </time>
-        <p className={styles.article__lead_paragraph}>{lead_paragraph}</p>
+        <p
+          className={cx(
+            styles.article__lead_paragraph,
+            'ax-article__lead_paragraph'
+          )}
+        >
+          {lead_paragraph}
+        </p>
 
         <a
-          className={styles.article__web_url}
+          className={cx(styles.article__web_url, 'ax_article__web_url')}
           href={web_url}
           target="_blank"
           rel="noreferrer"
