@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import React from 'react'
+
 import styles from './Navigation.module.css'
 
-export default function Navigation() {
+export default React.memo(function Navigation() {
   return (
     <header className={styles.navigation_header}>
       <ul className={styles.navigation_container}>
@@ -14,4 +16,4 @@ export default function Navigation() {
       </ul>
     </header>
   )
-}
+})
