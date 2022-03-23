@@ -26,7 +26,7 @@ export default function Home(props: { articles: Article[]; isError: boolean }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <ArticleList articles={articles} />)
+          <ArticleList articles={articles} />
         </>
       )}
     </Layout>
