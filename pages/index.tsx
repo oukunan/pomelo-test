@@ -1,30 +1,34 @@
-import styles from '../styles/Home.module.css'
+import Head from 'next/head'
+import React from 'react'
+
 import { fetchPopularArticles } from '../actions'
-import ArticleCard from '../components/ArticleCard'
+import ArticleList from '../components/ArticleList'
 import Layout from '../components/Layout'
 import SearchInput from '../components/SearchInput'
-import useArticles from '../hooks/useArticles'
+import useFilteredArticles from '../hooks/useFilteredArticles'
 import { Article } from '../types'
 
 export default function Home(props: { articles: Article[]; isError: boolean }) {
-  const { articles, setQuery } = useArticles(props.articles)
-
-  if (props.isError) {
-    return 'Something went wrong. Please try again.'
-  }
+  const { articles, query, setQuery } = useFilteredArticles(props.articles)
 
   return (
     <Layout>
-      <div>
-        <SearchInput onChange={(e) => setQuery(e.target.value)} />
-        <ul className={styles.articles_wrapper}>
-          {articles.map((article) => (
-            <li key={article.id}>
-              <ArticleCard article={article} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Head>
+        <title>New York Times News</title>
+      </Head>
+      {props.isError ? (
+        <p>
+          Cannot get your articles. Please come back later or refresh the page.
+        </p>
+      ) : (
+        <>
+          <SearchInput
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <ArticleList articles={articles} />)
+        </>
+      )}
     </Layout>
   )
 }

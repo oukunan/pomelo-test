@@ -1,3 +1,5 @@
+import { Article } from '../types'
+
 export const MockArticlesDoc = {
   abstract:
     'The right-wing group’s deceptive call to the president’s daughter a month before Election Day is among the new details that show how the organization worked to expose personal information about the Biden family.',
@@ -1124,4 +1126,61 @@ export const MockArticlesDoc = {
   _id: 'nyt://article/36d424da-22d3-52df-b4fe-36dfd5e069fc',
   word_count: 2286,
   uri: 'nyt://article/36d424da-22d3-52df-b4fe-36dfd5e069fc',
+}
+
+export const mockArticle: Article = {
+  uri: 'nyt://article/3fff0ebc-24d2-534d-8fa3-d50b33f5a491',
+  url: 'https://www.nytimes.com/2022/03/22/world/asia/china-eastern-crash-explained.html',
+  id: 100000008265595,
+  asset_id: 100000008265595,
+  source: 'New York Times',
+  published_date: '2022-03-22',
+  updated: '2022-03-22 16:44:28',
+  section: 'World',
+  subsection: 'Asia Pacific',
+  nytdsection: 'world',
+  column: null,
+  byline: 'By Austin Ramzy and Niraj Chokshi',
+  type: 'Article',
+  title: 'What We Know About the Crash of China Eastern Airlines Flight 5735',
+  abstract:
+    'The crash of the Boeing plane, with more than 130 people on board, is China’s worst air disaster in more than a decade.',
+  des_facet: [
+    'Aviation Accidents, Safety and Disasters',
+    'Airlines and Airplanes',
+    'Deaths (Fatalities)',
+  ],
+  org_facet: ['China Eastern Airlines', 'Boeing Company'],
+  per_facet: [],
+  geo_facet: ['China', 'Kunming (China)'],
+  media: [
+    {
+      type: 'image',
+      subtype: 'photo',
+      caption:
+        'A photo released by a Russian state-owned news agency showing an Iskander-M launch vehicle being loaded with a ballistic missile during military exercises at a Russian firing range in Ussuriysk in 2016.',
+      copyright: 'Yuri Smityuk/TASS, via Getty Images',
+      approved_for_syndication: 1,
+      'media-metadata': [
+        {
+          url: 'https://static01.nyt.com/images/2022/02/11/science/00nukes/00nukes-thumbStandard.jpg',
+          format: 'Standard Thumbnail',
+          height: 75,
+          width: 75,
+        },
+        {
+          url: 'https://static01.nyt.com/images/2022/02/11/science/00nukes/00nukes-mediumThreeByTwo210.jpg',
+          format: 'mediumThreeByTwo210',
+          height: 140,
+          width: 210,
+        },
+        {
+          url: 'https://static01.nyt.com/images/2022/02/11/science/00nukes/00nukes-mediumThreeByTwo440.jpg',
+          format: 'mediumThreeByTwo440',
+          height: 293,
+          width: 440,
+        },
+      ],
+    },
+  ],
 }
