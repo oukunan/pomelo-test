@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import styles from './SearchInput.module.css'
 
 export default function SearchInput(
@@ -8,7 +9,7 @@ export default function SearchInput(
 ) {
   return (
     <input
-      className={styles.search_input__container}
+      className={cx(styles.search_input, 'ax-search_input')}
       type="search"
       placeholder="Search The New York Times"
       {...props}

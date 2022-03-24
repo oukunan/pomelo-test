@@ -1,4 +1,4 @@
-.search_input__container {
+.search_input {
     border: none;
     border-bottom: 1px solid #e2e2e2;
     width: 100%;
@@ -8,6 +8,6 @@
     margin-bottom: 2rem;
 }
 
-.search_input__container::placeholder {
+.search_input::placeholder {
     color: 1px solid #e2e2e2;
 }
