@@ -1,4 +1,4 @@
-.navigation_header {
+.navigation__header {
     position: sticky;
     top: -16px;
     padding-top: 16px;
@@ -8,7 +8,7 @@
     z-index: 1;
 }
 
-.navigation_container {
+.navigation__container {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -20,9 +20,15 @@
     margin: 0 auto;
 }
 
-.navigation_item {
+.navigation__item {
     display: inline-block;
     font-size: 0.875rem;
     line-height: 1rem;
     font-weight: 500;
+}
+
+.navigation__item_active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 600;
 }
