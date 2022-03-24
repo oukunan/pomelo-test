@@ -1,0 +1,9 @@
+.article__search_results_container {
+    height: 21px;
+}
+
+.article__search_results {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+}
