@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import ArticleDetails from './[articleId]'
-import { MockArticlesDoc } from '../../mocks'
+import ArticleDetails from '../pages/article/[articleId]'
+import { MockArticlesDoc } from '../mocks'
 
 jest.mock('next/router', () => ({
   useRouter() {

@@ -1,4 +1,4 @@
-import { filterArticlesTitleAndAbstract } from './'
+import { filterArticlesTitleAndAbstract } from '../utils'
 import { mockArticle } from '../mocks'
 
 const baseMock = [
