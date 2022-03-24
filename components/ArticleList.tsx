@@ -14,7 +14,7 @@ export default function ArticleList(props: { articles: Article[] }) {
         <li key={article.id} className={styles.article_list__item}>
           <Link
             href={{
-              pathname: `/${article.id}`,
+              pathname: `/article/${article.id}`,
               query: {
                 uri: article.uri,
               },

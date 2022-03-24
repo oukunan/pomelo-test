@@ -1,8 +1,8 @@
 import cx from 'classnames'
 
-import { fetchSingleArticle } from '../actions'
-import Layout from '../components/Layout'
-import styles from '../styles/Article.module.css'
+import { fetchSingleArticle } from '../../actions'
+import Layout from '../../components/Layout'
+import styles from '../../styles/Article.module.css'
 
 export default function ArticleDetails(props: {
   docs: Awaited<ReturnType<typeof fetchSingleArticle>>

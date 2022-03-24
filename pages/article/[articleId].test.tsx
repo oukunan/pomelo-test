@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 import ArticleDetails from './[articleId]'
-import { MockArticlesDoc } from '../mocks'
+import { MockArticlesDoc } from '../../mocks'
 
 it('renders error message when isError props is true', () => {
   const { baseElement } = render(<ArticleDetails isError docs={[]} />)
