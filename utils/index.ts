@@ -11,7 +11,11 @@ export function filterArticlesTitleAndAbstract(
     return articles
   }
 
-  const regex = new RegExp(String.raw`${query}`, 'ig')
+  const queryLowerCase = query.toLowerCase()
 
-  return articles.filter((i) => regex.test(i.title) || regex.test(i.abstract))
+  return articles.filter(
+    (article) =>
+      article.title.toLowerCase().includes(queryLowerCase) ||
+      article.abstract.toLowerCase().includes(queryLowerCase)
+  )
 }
