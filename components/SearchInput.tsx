@@ -9,7 +9,7 @@ export default function SearchInput(
   return (
     <input
       className={styles.search_input__container}
-      type="text"
+      type="search"
       placeholder="Search The New York Times"
       {...props}
     />
