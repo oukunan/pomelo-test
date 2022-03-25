@@ -4,17 +4,23 @@ import { fetchPopularArticles } from '../actions'
 import ArticleList from '../components/ArticleList'
 import Layout from '../components/Layout'
 import SearchInput from '../components/SearchInput'
-import useSearchArticles from '../hooks/useSearchArticles'
 import { Article } from '../types'
 import styles from '../styles/Home.module.css'
+import { filterArticlesTitleAndAbstract } from '../utils'
 
 export default function Home(props: {
   articles: Article[]
   isError?: boolean
 }) {
-  const { articles, query, setQuery } = useSearchArticles(props.articles)
+  const [query, setQuery] = React.useState('')
 
-  const isShouldRenderNumberOfSearchResult = query && articles.length > 0
+  const filteredArticles = React.useMemo(
+    () => filterArticlesTitleAndAbstract(props.articles, query),
+    [props.articles, query]
+  )
+
+  const isShouldRenderNumberOfSearchResult =
+    query && filteredArticles.length > 0
 
   if (props.isError) {
     return (
@@ -31,13 +37,13 @@ export default function Home(props: {
       <div className={styles.article__search_results_container}>
         {isShouldRenderNumberOfSearchResult && (
           <p className={styles.article__search_results}>
-            Showing {articles.length} results for
+            Showing {filteredArticles.length} results for
           </p>
         )}
       </div>
       <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} />
 
-      <ArticleList articles={articles} />
+      <ArticleList articles={filteredArticles} />
     </Layout>
   )
 }
