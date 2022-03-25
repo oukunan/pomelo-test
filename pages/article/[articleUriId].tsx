@@ -1,8 +1,9 @@
 import cx from 'classnames'
 
-import { fetchSingleArticle } from '../../actions'
+import { fetchPopularArticles, fetchSingleArticle } from '../../actions'
 import Layout from '../../components/Layout'
 import styles from '../../styles/Article.module.css'
+import { extractUriId } from '../../utils'
 
 export default function ArticleDetails(props: {
   docs: Awaited<ReturnType<typeof fetchSingleArticle>>
@@ -78,9 +79,25 @@ export default function ArticleDetails(props: {
   )
 }
 
-export async function getServerSideProps(data: { query: { uri: string } }) {
+export async function getStaticPaths() {
+  const articles = await fetchPopularArticles()
+
+  const paths = articles.map((article) => {
+    return {
+      params: {
+        articleUriId: extractUriId(article.uri),
+      },
+    }
+  })
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps(data: {
+  params: { articleUriId: string }
+}) {
   try {
-    const docs = await fetchSingleArticle(data.query.uri)
+    const docs = await fetchSingleArticle(data.params.articleUriId)
 
     return { props: { docs } }
   } catch (error) {

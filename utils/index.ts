@@ -19,3 +19,16 @@ export function filterArticlesTitleAndAbstract(
       article.abstract.toLowerCase().includes(queryLowerCase)
   )
 }
+
+// NYT Article URI pattern: nyt://article/a14os-p1ka1ka1-1pd
+export function extractUriId(articleUri: string) {
+  const [, uriId] = articleUri.split('nyt://article/')
+
+  return uriId
+}
+
+export function sleep(delayMilliseconds: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delayMilliseconds)
+  })
+}
