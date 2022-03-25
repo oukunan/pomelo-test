@@ -25,9 +25,7 @@ export default function Home(props: {
   if (props.isError) {
     return (
       <Layout title="New York Times News">
-        <p>
-          Cannot get your articles. Please come back later or refresh the page.
-        </p>
+        <p>Something went wrong. Please try again.</p>
       </Layout>
     )
   }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import ArticleList from '../components/ArticleList'
+import ArticleList from './ArticleList'
 import { mockArticle } from '../mocks'
 
 it('returns `No articles found` message when has no articles', () => {

@@ -21,6 +21,14 @@ it('not renders the umber of search results', () => {
   expect(screen.queryByText(/results for/i)).toBeNull()
 })
 
+it('renders errors message when isError props is true', () => {
+  render(<Home articles={[]} isError />)
+
+  expect(
+    screen.queryByText('Something went wrong. Please try again.')
+  ).toBeInTheDocument()
+})
+
 it('renders the number of search results when starting search and article matched', () => {
   const { baseElement } = render(
     <Home

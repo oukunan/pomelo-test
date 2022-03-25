@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import ArticleCard from '../components/ArticleCard'
+import { render } from '@testing-library/react'
+import ArticleCard from './ArticleCard'
 import { mockArticle } from '../mocks'
 
 const baseProps: React.ComponentProps<typeof ArticleCard> = {

@@ -17,8 +17,18 @@ it('renders error message when isError props is true', () => {
   const { baseElement } = render(<ArticleDetails isError docs={[]} />)
 
   expect(
-    baseElement.querySelector('.ax-article-details__error_message')?.textContent
-  ).toBe('Cannot retrieve your article. Please try again later.')
+    baseElement.querySelector('.ax-article-details__server_error_message')
+      ?.textContent
+  ).toBe('Something went wrong. Please try again.')
+})
+
+it('renders error message when cannot get article', () => {
+  const { baseElement } = render(<ArticleDetails docs={[]} />)
+
+  expect(
+    baseElement.querySelector('.ax-article-details__article_error_message')
+      ?.textContent
+  ).toBe('Cannot get your article. Please try again later.')
 })
 
 it('renders articles content correctly', () => {

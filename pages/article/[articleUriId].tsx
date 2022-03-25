@@ -12,8 +12,8 @@ export default function ArticleDetails(props: {
   if (props.isError) {
     return (
       <Layout title="Something went wrong">
-        <p className="ax-article-details__error_message">
-          Cannot retrieve your article. Please try again later.
+        <p className="ax-article-details__server_error_message">
+          Something went wrong. Please try again.
         </p>
       </Layout>
     )
@@ -23,7 +23,9 @@ export default function ArticleDetails(props: {
   if (!docs) {
     return (
       <Layout title="Something went wrong">
-        <p>Cannot get your article. Please try again later.</p>
+        <p className="ax-article-details__article_error_message">
+          Cannot get your article. Please try again later.
+        </p>
       </Layout>
     )
   }
