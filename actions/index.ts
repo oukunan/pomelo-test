@@ -11,7 +11,10 @@ export async function fetchPopularArticles(): Promise<Article[]> {
 }
 
 export async function fetchSingleArticle(uriId: string) {
-  await sleep(55000)
+  // Hack: Prevent rate limit of the NYT API.
+  if (process.env.NODE_ENV === 'production') {
+    await sleep(55000)
+  }
   const data = await restClient.get<void, SingeArticleResponse>(
     `/svc/search/v2/articlesearch.json?fq=uri:"nyt://article/${uriId}"`
   )
