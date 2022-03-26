@@ -1,8 +1,7 @@
-.site_content {
+.layout__site_content {
+    position: relative;
+    z-index: var(--layout-z-index);
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 32px;
-    padding-bottom: 64px;
+    padding: 32px 32px 64px 32px;
 }

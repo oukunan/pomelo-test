@@ -12,7 +12,7 @@ export default function Layout(props: {
         <title>{props.title}</title>
       </Head>
       <Navigation />
-      <main className={styles.site_content}>{props.children}</main>
+      <main className={styles.layout__site_content}>{props.children}</main>
     </div>
   )
 }

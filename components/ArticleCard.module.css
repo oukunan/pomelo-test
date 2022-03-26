@@ -5,7 +5,7 @@
 }
 
 .article_card__published_date {
-    color: var(--color-content-tertiary);
+    color: var(--color-content-secondary);
     font-size: 0.75rem;
     font-weight: 500;
     min-width: 120px;
@@ -19,25 +19,19 @@
 }
 
 .article_card__header_and_description_container {
-    margin: 0;
     max-width: 470px;
 }
 
 .article_card__header {
     color: var(--color-content-primary);
     font-weight: 700;
-    line-height: 1.2em;
-    letter-spacing: 0.01em;
     font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .article_card__abstract {
-    color: var(--color-content-tertiary);
+    color: var(--color-content-secondary);
     font-size: 0.875rem;
-    letter-spacing: 0.1px;
-    line-height: 1.1875rem;
-    margin: 0;
-    padding: 0;
 }
 
 .article_card__figure {
@@ -52,7 +46,7 @@
     letter-spacing: 0.5px;
     line-height: 0.6875rem;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -69,10 +63,6 @@
     }
 
     .article_card__section {
-        margin: 1rem 0;
-    }
-
-    .article_card__header {
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0;
     }
 }

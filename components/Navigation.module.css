@@ -2,10 +2,9 @@
     position: sticky;
     top: -16px;
     padding-top: 16px;
-
     box-shadow: 0 0 5px 1px rgb(0 0 0 / 28%);
     background-color: #ffffff;
-    z-index: 1;
+    z-index: calc(var(--layout-z-index) + 1);
 }
 
 .navigation__container {
@@ -15,7 +14,6 @@
     height: 60px;
     padding-left: 32px;
     padding-right: 32px;
-
     max-width: var(--max-content-width);
     margin: 0 auto;
 }

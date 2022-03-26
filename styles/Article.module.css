@@ -33,13 +33,13 @@
 
 .article__pub_date {
     font-size: 0.8125rem;
-    font-weight: 500;
-    color: #333;
+    font-weight: 600;
+    color: var(--color-content-secondary);
     margin-bottom: 16px;
 }
 
 .article__web_url {
     color: var(--color-text-decoration-color);
-    text-decoration: underline;
     text-decoration-color: var(--color-text-decoration-color);
+    text-decoration-line: underline;
 }

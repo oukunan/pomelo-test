@@ -1,9 +1,10 @@
 :root {
   --max-content-width: 1100px;
   --color-content-primary: hsla(0, 0%, 7.06%, 1);
-  --color-content-quaternary: hsla(0, 0%, 44.71%, 1);
-  --color-content-tertiary: hsla(0, 0%, 35.3%, 1);
+  --color-content-secondary: hsla(0, 0%, 35.3%, 1);
   --color-text-decoration-color: #326891;
+  --color-border-color: #e2e2e2;
+  --layout-z-index: 1;
 }
 
 html {

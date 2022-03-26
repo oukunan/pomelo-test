@@ -23,9 +23,9 @@ it("renders valid article card's information", () => {
   expect(
     baseElement.querySelector('.ax-article-card__header')
   ).toHaveTextContent(mockArticle.title)
-  expect(baseElement.querySelector('.ax-article__abstract')).toHaveTextContent(
-    mockArticle.abstract
-  )
+  expect(
+    baseElement.querySelector('.article_card__abstract')
+  ).toHaveTextContent(mockArticle.abstract)
   expect(
     baseElement.querySelector('.ax-article-card__figure')
   ).toBeInTheDocument()

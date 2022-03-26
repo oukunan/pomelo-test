@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import styles from './ArticleCard.module.css'
 import { Article } from '../types'
@@ -43,7 +42,12 @@ export default React.memo(function ArticleCard(props: {
           >
             {props.article.title}
           </h3>
-          <p className={cx(styles.article_abstract, 'ax-article__abstract')}>
+          <p
+            className={cx(
+              styles.article_card__abstract,
+              'ax-article_card__abstract'
+            )}
+          >
             {props.article.abstract}
           </p>
         </div>
