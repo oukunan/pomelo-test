@@ -6,32 +6,10 @@ import styles from '../../styles/Article.module.css'
 import { extractUriId } from '../../utils'
 
 export default function ArticleDetails(props: {
-  docs: Awaited<ReturnType<typeof fetchSingleArticle>>
-  isError?: boolean
+  article: Awaited<ReturnType<typeof fetchSingleArticle>>
 }) {
-  if (props.isError) {
-    return (
-      <Layout title="Something went wrong">
-        <p className="ax-article-details__server_error_message">
-          Something went wrong. Please try again.
-        </p>
-      </Layout>
-    )
-  }
-
-  const docs = props.docs[0]
-  if (!docs) {
-    return (
-      <Layout title="Something went wrong">
-        <p className="ax-article-details__article_error_message">
-          Cannot get your article. Please try again later.
-        </p>
-      </Layout>
-    )
-  }
-
   return (
-    <Layout title={docs.headline.main}>
+    <Layout title={props.article.headline.main}>
       <div className={styles.article__container}>
         <div className={styles.article__top_content_container}>
           <p
@@ -40,24 +18,24 @@ export default function ArticleDetails(props: {
               'ax-article__section_name'
             )}
           >
-            {docs.section_name}
+            {props.article.section_name}
           </p>
           <h1 className={cx(styles.article__header, 'ax-article__header')}>
-            {docs.headline.main}
+            {props.article.headline.main}
           </h1>
           <h2 className={cx(styles.article__abstract, 'ax-article__abstract')}>
-            {docs.abstract}
+            {props.article.abstract}
           </h2>
         </div>
 
         <div className={cx(styles.article__original, 'ax-article__original')}>
-          {docs.byline.original}
+          {props.article.byline.original}
         </div>
         <time
           className={cx(styles.article__pub_date, 'ax-article__pub_date')}
-          dateTime={docs.pub_date}
+          dateTime={props.article.pub_date}
         >
-          Published: {new Date(docs.pub_date).toDateString()}
+          Published: {new Date(props.article.pub_date).toDateString()}
         </time>
         <p
           className={cx(
@@ -65,12 +43,12 @@ export default function ArticleDetails(props: {
             'ax-article__lead_paragraph'
           )}
         >
-          {docs.lead_paragraph}
+          {props.article.lead_paragraph}
         </p>
 
         <a
           className={cx(styles.article__web_url, 'ax_article__web_url')}
-          href={docs.web_url}
+          href={props.article.web_url}
           target="_blank"
           rel="noreferrer"
         >
@@ -98,11 +76,11 @@ export async function getStaticPaths() {
 export async function getStaticProps(data: {
   params: { articleUriId: string }
 }) {
-  try {
-    const docs = await fetchSingleArticle(data.params.articleUriId)
+  const article = await fetchSingleArticle(data.params.articleUriId)
 
-    return { props: { docs } }
-  } catch (error) {
-    return { props: { docs: [], isError: error } }
+  return {
+    props: { article },
+    // Revalidate content every 1 hour.
+    revalidate: 60 * 60,
   }
 }

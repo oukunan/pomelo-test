@@ -13,26 +13,8 @@ jest.mock('next/router', () => ({
   },
 }))
 
-it('renders error message when isError props is true', () => {
-  const { baseElement } = render(<ArticleDetails isError docs={[]} />)
-
-  expect(
-    baseElement.querySelector('.ax-article-details__server_error_message')
-      ?.textContent
-  ).toBe('Something went wrong. Please try again.')
-})
-
-it('renders error message when cannot get article', () => {
-  const { baseElement } = render(<ArticleDetails docs={[]} />)
-
-  expect(
-    baseElement.querySelector('.ax-article-details__article_error_message')
-      ?.textContent
-  ).toBe('Cannot get your article. Please try again later.')
-})
-
 it('renders articles content correctly', () => {
-  const { baseElement } = render(<ArticleDetails docs={[MockArticlesDoc]} />)
+  const { baseElement } = render(<ArticleDetails article={MockArticlesDoc} />)
 
   expect(
     baseElement.querySelector('.ax-article__section_name')?.textContent

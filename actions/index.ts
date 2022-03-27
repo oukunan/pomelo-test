@@ -19,5 +19,5 @@ export async function fetchSingleArticle(uriId: string) {
     `/svc/search/v2/articlesearch.json?fq=uri:"nyt://article/${uriId}"`
   )
 
-  return data.response.docs
+  return data.response.docs[0]
 }
